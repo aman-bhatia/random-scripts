@@ -7,7 +7,11 @@ using namespace std;
 
 int main( int argc, char** argv )
 {
-	Mat src = imread( "mumma.png" 1 );
+	if (argc!=2){
+		cout << "Usage : ./a.out <image_path> \n\n";
+		exit(0);
+	}
+	Mat src = imread( argv[1], 1 );
 	Mat samples(src.rows * src.cols, 3, CV_32F);
 	for( int y = 0; y < src.rows; y++ )
 		for( int x = 0; x < src.cols; x++ )
