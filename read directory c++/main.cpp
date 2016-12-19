@@ -15,9 +15,16 @@ vector<string> read_directory(string path){
 			errno = 0;
 			de = readdir(dp);
 			if (de == NULL) break;
-			string filename = string(de->d_name);
-			if (filename=="." or filename=="..") continue;
-			result.push_back(filename);
+			else if (de->d_type == DT_DIR) {
+				string dir_name = string(de->d_name);
+				if (dir_name[0]!='.'){
+					vector<string> temp = read_directory(path + "/" + dir_name);
+					for (int i=0;i<temp.size();i++) result.push_back(dir_name + "/" + temp[i]);
+				}
+			} else {
+				string filename = string(de->d_name);
+				result.push_back(filename);
+			}
 		}
 		closedir(dp);
 	} else {
@@ -25,7 +32,6 @@ vector<string> read_directory(string path){
 	}
 	return result;
 }
-
 
 int main(){
 
