@@ -1,0 +1,2 @@
+all:
+	@g++ -std=c++11 *.cpp -I/usr/local/include/opencv -I/usr/local/include/opencv2 -L/usr/local/lib/ -lopencv_stitching -lopencv_superres -lopencv_videostab -lopencv_objdetect -lopencv_shape -lopencv_video  -lopencv_calib3d -lopencv_features2d -lopencv_ml -lopencv_flann -lopencv_highgui -lopencv_videoio -lopencv_imgcodecs -lopencv_photo -lopencv_imgproc -lopencv_core -lopencv_xfeatures2d
